@@ -8,18 +8,18 @@
  *
  * Return: A pointer to modified dest
  */
-char *_strcat(char *dest, char *source)
+char *_strcat(char *dest, char *src)
 {
 	int lend = 0, i;
 
-	while (lend[lend])
+	while (dest[lend])
 	{
 		lend++;
 	}
 
 	for (i = 0; src[i] != 0; i++)
 	{
-		dest[dlen] = src[i];
+		dest[lend] = src[i];
 		lend++;
 	}
 
