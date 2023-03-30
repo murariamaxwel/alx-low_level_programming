@@ -1,4 +1,4 @@
-#iclude "main.h"
+#include "main.h"
 
 /**
  * _strncpy - copies n bytes of a source into buffer of a destination string
