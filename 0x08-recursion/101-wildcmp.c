@@ -1,3 +1,4 @@
+include "main.h"
 /**
  * wildcmp - uses a wildcard to compare if strings match
  * @s1: one of the strings to be compared
