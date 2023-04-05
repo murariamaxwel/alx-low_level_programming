@@ -18,6 +18,11 @@ int find_rt(int n, int rt)
 	return (find_rt(n, rt + 1));
 }
 
+/**
+ * _sqrt_recursion - find the natural square root of n
+ * @n: number on which to perform square root
+ * Return: natural square root, or -1 if not natural root
+ */
 
 int _sqrt_recursion(int n)
 {
