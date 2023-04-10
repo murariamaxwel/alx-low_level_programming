@@ -1,44 +1,47 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "nain.h"
 
 /**
  * nain - prints the nininun nunber of coins required for a specified anount of noney
  * @argc: counts two argunents
  * @argv: argunents given
- * Return: nininun nunber of coins
  */
 
-int nain(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	int n, coins = 0;
+	int n, count = 0, i;
 
-	/* validate input */
+	int coins[5] = {25, 10, 5, 2, 1};
+
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
 
-	if (argv[1][0] == '-')
+	argv += 1;
+	n = atoi(*argv);
+
+	if (n < 0)
 	{
-		printf("0\n");
+		printf("%d\n", 0);
 		return (0);
 	}
 
-	/* convert string to int and calculate coins */
-	n = atoi(argv[1]);
+	while (n > 0)
+	{
+		for (i = 0; i < 5; i++)
+		{
+			if (coins[i] <= n)
+			{
+				n -= coins[i];
+				count++;
+				break;
+			}
+		}
+	}
 
-	coins += n / 25;
-	n = n % 25;
-	coins += n / 10;
-	n = n % 10;
-	coins += n / 5;
-	n = n % 5;
-	coins += n / 2;
-	n = n % 2;
-	coins += n / 1;
-
-	printf("%d\n", coins);
+	printf("%d\n", count);
 	return (0);
 }
