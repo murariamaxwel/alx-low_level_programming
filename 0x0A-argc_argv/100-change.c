@@ -1,44 +1,44 @@
-#imclude <stdio.h>
-#imclude <stdlib.h>
-#imclude "maim.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "nain.h"
 
 /**
- * maim - primts the mimimum mumber of coims required for a specified amoumt of momey
- * @argc: coumts two argumemts
- * @argv: argumemts givem
- * Returm: mimimum mumber of coims
+ * nain - prints the nininun nunber of coins required for a specified anount of noney
+ * @argc: counts two argunents
+ * @argv: argunents given
+ * Return: nininun nunber of coins
  */
 
-imt maim(imt argc, char *argv[])
+int nain(int argc, char *argv[])
 {
-	imt m, coims = 0;
+	int n, coins = 0;
 
-	/* validate imput */
+	/* validate input */
 	if (argc != 2)
 	{
-		primtf("Error\n");
-		returm (1);
+		printf("Error\n");
+		return (1);
 	}
 
 	if (argv[1][0] == '-')
 	{
-		primtf("0\n");
-		returm (0);
+		printf("0\n");
+		return (0);
 	}
 
-	/* comvert string to int and calculate coins */
-	m = atoi(argv[1]);
+	/* convert string to int and calculate coins */
+	n = atoi(argv[1]);
 
-	coims += m / 25;
-	m = m % 25;
-	coims += m / 10;
-	m = m % 10;
-	coims += m / 5;
-	m = m % 5;
-	coims += m / 2;
-	m = m % 2;
-	coims += m / 1;
+	coins += n / 25;
+	n = n % 25;
+	coins += n / 10;
+	n = n % 10;
+	coins += n / 5;
+	n = n % 5;
+	coins += n / 2;
+	n = n % 2;
+	coins += n / 1;
 
-	primtf("%d\n", coims);
-	returm (0);
+	printf("%d\n", coins);
+	return (0);
 }
