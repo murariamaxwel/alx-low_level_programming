@@ -1,55 +1,55 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_index- add node at specified index
+ * delete_dnodeint_at_index - delete node at specified index
  *
- * h: Head of node
+ * head: head node
  *
- * idx: index
+ * index: index
  *
- * n: struct int
- *
- * Return: dlistint_t
+ * Return: 1 succeed, -1 if fail
  */
 
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *new_node = malloc(sizeof(dlistint_t));
-	dlistint_t *current;
-	unsigned int count = 0;
+	dlistint_t *node;
+	unsigned int count;
 
-	if (h == NULL || new_node == NULL)
-	{
-		return (NULL);
-	}
-	new_node->n = n;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	current = *h;
+	if (*head == NULL)
+		return (-1);
 
-	if (idx == 0)
+	node = *head;
+	if (index == 0)
 	{
-		new_node = add_dnodeint(h, n);
-		return (new_node);
+		*head = node->next;
+		if (node->next != NULL)
+		{
+			node->next->prev = NULL;
+		}
+		free(node);
+		return (1);
 	}
-	while (current)
+	for (count = 0; node != NULL && count < index - 1 ; count++)
 	{
-		if (current->next == NULL && count == idx - 1)
-		{
-			new_node = add_dnodeint_end(h, n);
-			return (new_node);
-		}
-		else if ((idx - 1) == count)
-		{
-			new_node->next = current->next;
-			new_node->prev = current;
-			current->next->prev = new_node;
-			current->next = new_node;
-			return (new_node);
-		}
-		count++;
-		current = current->next;
+		node = node->next;
 	}
-	free(new_node);
-	return (NULL);
+	if (node == NULL || node->next == NULL)
+	{
+		return (-1);
+	}
+
+	if (node->next->next != NULL)
+	{
+		node->next = node->next->next;
+		free(node->next->prev);
+		node->next->prev = node;
+		return (1);
+	}
+	else
+	{
+		free(node->next);
+		node->next = NULL;
+		return (1);
+	}
+	return (-1);
 }
